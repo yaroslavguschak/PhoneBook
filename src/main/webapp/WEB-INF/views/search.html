@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Java Lib</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="../../../resources/css/style.css" th:href="@{/resources/css/style.css}" />
+    <link rel="stylesheet" href="../../../resources/css/normalize.css" th:href="@{/resources/css/normalize.css}" />
+</head>
+
+<body>
+    <div th:replace="headernavigation :: header">Header</div>
+    <div th:replace="headernavigation :: navigation">Menu</div>
+    <!--MAIN-->
+        <main>
+            <div class="container">
+                <h2 class="collection-title">Search <small>
+                    <p th:text="${matchesCount}">Matches</p>
+                </small></h2>
+
+                <div th:if="${showuser != null}">
+                    <div class="collections">
+                        <div  th:each="contact, iterationStatus : ${searchedResultList}" class="collection-item-outer">
+                            <!--CONTACT VIEW-->
+                            <div th:replace="contactviews :: contactitem">Coontact</div>
+                            <!--/CONTACT VIEW-->
+                        </div>
+                    </div>
+                </div>
+          </div>
+     </main>
+    <!--MAIN-->
+
+    <!--FOOTER-->
+        <div th:replace="headernavigation :: footer">Footer</div>
+    <!--/FOOTER-->
+</body>
+</html>

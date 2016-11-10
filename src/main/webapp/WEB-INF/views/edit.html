@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Contact Edit</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="../../../resources/css/style.css" th:href="@{/resources/css/style.css}" />
+    <link rel="stylesheet" href="../../../resources/css/normalize.css" th:href="@{/resources/css/normalize.css}" />
+</head>
+
+<body>
+    <div th:replace="headernavigation :: header">Header</div>
+    <div th:replace="headernavigation :: navigation">Menu</div>
+    <!--MAIN-->
+        <main>
+            <div class="container">
+                <h2 class="collection-title">Edit contact. <small>Fill inputs bellow: </small></h2>
+                <div th:if="${showuser == null}">
+                    <p>Please, register or login before edition contact!</p>
+                </div>
+                <div th:if="${showuser != null}">
+                    <div class="collections">
+                            <!--CONTACT VIEW-->
+                                <div th:replace="contactviews :: contactedit">Contact</div>
+                            <!--/CONTACT VIEW-->
+
+                    </div>
+            </div>
+          </div>
+     </main>
+
+
+
+    <!--MAIN-->
+
+    <!--FOOTER-->
+    <footer class="footer">
+        <div class="container">
+            <p>Yaroslav Guschak, 2016</p>
+        </div>
+    </footer>
+    <!--/FOOTER-->
+</body>
+</html>

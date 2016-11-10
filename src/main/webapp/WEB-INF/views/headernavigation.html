@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+    <body>
+    <!--HEADER-->
+    <header class="header" th:fragment="header">
+        <div class="container">
+            <h1>Online Java White Pages</h1>
+            <h2>
+                <small> Your personal PhoneBook!</small>
+            </h2>
+
+        </div>
+    </header>
+    <!--/HEADER-->
+
+    <!--NAVIGATION-->
+    <nav class="page-navigation" th:fragment="navigation">
+
+        <div th:if="${showuser != null}">
+            <p class="user-info" th:text="${showuser.login}"></p>
+        </div>
+        <p th:if="${message} != null" class="message" th:text="${message}"></p>
+        <div class="container">
+            <!--MENU-->
+            <ul>
+                <li><a href="phonebook">PhoneBook</a></li>
+                <li><a href="newcontact">Add Contact</a></li>
+                <li th:if="${showuser == null}">
+                    <a href="register">Register</a>
+                </li>
+                <li th:if="${showuser != null}">
+                    <a href="logout">Logout</a>
+                </li>
+            </ul>
+            <!--/MENU-->
+
+            <!--LOGIN FORM-->
+            <div th:if="${showuser == null}">
+                <form class="login" action="#" th:action="@{/loginchek}"  th:object="${loginRequest}" method="post">
+                    <input type="text" placeholder="login" th:field="*{login}" required="required" autofocus="true"/>
+                    <input type="password" placeholder="password" th:field="*{password}" required="required"/>
+                    <input type="submit" value="Login"/>
+                </form>
+            </div>
+            <!--/LOGIN FORM-->
+
+            <!--SEARCH FORM-->
+            <div th:if="${showuser != null}">
+                <form class="login" action="#" th:action="@{/search}" th:object="${searchRequest}" method="get">
+                    <input type="text"  placeholder="any part of name, number, email" th:field="*{searchTextInput}" required="required" autofocus="true"/>
+                    <input type="submit" value="Search"/>
+                </form>
+            </div>
+            <!--SEARCH FORM-->
+        </div>
+    </nav>
+    <!--/NAVIGATION-->
+
+    <!--FOOTER-->
+    <footer class="footer" th:fragment="footer">
+        <div class="container">
+            <p>Yaroslav Guschak, 2016</p>
+        </div>
+    </footer>
+    <!--/FOOTER-->
+
+
+
+    </body>
+</html>

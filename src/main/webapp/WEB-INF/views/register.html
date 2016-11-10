@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Contact Edit</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="../../../resources/css/style.css" th:href="@{/resources/css/style.css}" />
+    <link rel="stylesheet" href="../../../resources/css/normalize.css" th:href="@{/resources/css/normalize.css}" />
+</head>
+
+<body>
+<div th:replace="headernavigation :: header">Header</div>
+<div th:replace="headernavigation :: navigation">Menu</div>
+<!--MAIN-->
+<main>
+    <div class="container">
+        <h2 class="collection-title">Register new user. <small>Fill inputs bellow: </small></h2>
+
+            <div class="collections">
+
+                <!--USER REGISTRATION FORM-->
+                 <div class="edit"  th:fragment="contactadd">
+                        <div class="edit-fields">
+                            <form  action="#" th:action="@{/doregister}"  th:object="${registerRequest}" method="post"
+                                   enctype="multipart/form-data">
+                                <div class="field">
+                                    <label for="login">Login:</label>
+                                    <input type="text" placeholder="login" th:field="*{login}"/>
+                                    <div class="error-input" th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Login Error</div>
+                                </div>
+                                <div class="field">
+                                    <label for="fullName">Full Name:</label>
+                                    <input type="text" placeholder="full name" th:field="*{fullName}"/>
+                                    <div class="error-input" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">fullName Error</div>
+                                </div>
+
+                                <div class="field">
+                                    <label for="password">Password:</label>
+                                    <input type="password" placeholder="password" th:field="*{password}"/>
+                                    <div class="error-input" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
+                                </div>
+                                <input type="submit" value="Register"/>
+                            </form>
+                        </div>
+                </div>
+                <!--/USER REGISTRATION FORM -->
+
+        </div>
+    </div>
+</main>
+<!--MAIN-->
+
+<!--FOOTER-->
+<footer class="footer">
+    <div class="container">
+        <p>Yaroslav Guschak, 2016</p>
+    </div>
+</footer>
+<!--/FOOTER-->
+</body>
+</html>

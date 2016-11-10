@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+    <body>
+
+    <!--CONTACT ITEM-->
+    <div class="collection-item" th:fragment="contactitem">
+
+        <div class="collection-text">
+            <div class="table">
+                    <div th:text="${contact.firstName}"      class="cell">First Name</div>
+                    <div th:text="${contact.lastName}"       class="cell">First Name</div>
+                    <div th:text="${contact.patronymicName}" class="cell">Patronymic Name</div>
+                    <div th:text="${contact.cellPhone}"      class="cell">Cell Phone</div>
+                    <div th:text="${contact.homeNumber}"     class="cell">Home Number</div>
+                    <div th:text="${contact.address}"        class="cell">Address</div>
+                    <div th:text="${contact.email}"          class="cell">Adress</div>
+                    <div class="cell">
+                        <form class="edit-button" action="#" th:action="@{/editcontact}"  method="post">
+                            <input type="hidden" name="contactId" th:value="${contact.id}"/>
+                            <input type="submit" value="Edit"/>
+                        </form>
+                    </div>
+
+                <div class="cell">
+                    <form class="delete-button" action="#" th:action="@{/deletecontact}"  method="post">
+                        <input type="hidden" name="contactId" th:value="${contact.id}"/>
+                        <input type="submit"  value="Delete"/>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!--/CONTACT ITEM-->
+
+
+    <!--CONTACT EDITING-->
+    <div class="edit"  th:fragment="contactedit">
+
+        <div class="edit-fields">
+            <h3 th:text="${contactRequest.firstName}">First Name</h3>
+
+            <form  action="#" th:action="@{/saveeditcontact}"  th:object="${contactRequest}" method="post"
+                  enctype="multipart/form-data">
+                <input type="hidden" th:field="*{id}"/>
+
+                <div class="field">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" th:field="*{firstName}"/>
+                    <div class="error-input" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</div>
+                 </div>
+
+                <div class="field">
+                    <label for="lastName">lastName:</label>
+                    <input type="text" th:field="*{lastName}"/>
+                    <div class="error-input" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</div>
+                </div>
+
+                <div class="field">
+                    <label for="patronymicName">patronymicName:</label>
+                    <input type="text" th:field="*{patronymicName}"/>
+                    <div class="error-input" th:if="${#fields.hasErrors('patronymicName')}" th:errors="*{patronymicName}">Patronymic Name Error</div>
+                </div>
+
+                <div class="field">
+                    <label for="cellPhone">cellPhone:</label>
+                    <input type="text" th:field="*{cellPhone}"/>
+                    <div class="error-input" th:if="${#fields.hasErrors('cellPhone')}" th:errors="*{cellPhone}">Cell Phone Error</div>
+                </div>
+
+                <div class="field">
+                    <label for="homeNumber">homeNumber:</label>
+                    <input type="text" th:field="*{homeNumber}"/>
+                    <div class="error-input" th:if="${#fields.hasErrors('homeNumber')}" th:errors="*{homeNumber}">Home Phone Error</div>
+                </div>
+
+                <div class="field">
+                    <label for="address">address:</label>
+                    <input type="text" th:field="*{address}"/>
+                </div>
+
+                <div class="field">
+                    <label for="email">email:</label>
+                    <input type="text" th:field="*{email}"/>
+                    <div class="error-input" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
+                </div>
+
+                <input type="submit" value="Save contact"/>
+            </form>
+
+        </div>
+    </div>
+    <!--/CONTACT EDITING -->
+
+    <!--CONTACT ADDITION-->
+    <div class="edit"  th:fragment="contactadd">
+        <div class="edit-fields">
+
+            <form  action="#" th:action="@{/doaddcontact}"  th:object="${contactRequest}" method="post"
+                   enctype="multipart/form-data">
+
+                <div class="field">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" th:field="*{firstName}"/>
+                    <div class="error-input" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</div>
+                </div>
+
+                <div class="field">
+                    <label for="lastName">lastName:</label>
+                    <input type="text" th:field="*{lastName}"/>
+                    <div class="error-input" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</div>
+                </div>
+
+                <div class="field">
+                    <label for="patronymicName">patronymicName:</label>
+                    <input type="text" th:field="*{patronymicName}"/>
+                    <div class="error-input" th:if="${#fields.hasErrors('patronymicName')}" th:errors="*{patronymicName}">Patronymic Name Error</div>
+                </div>
+
+                <div class="field">
+                    <label for="cellPhone">cellPhone:</label>
+                    <input type="text" th:field="*{cellPhone}"/>
+                    <div class="error-input" th:if="${#fields.hasErrors('cellPhone')}" th:errors="*{cellPhone}">Cell Phone Error</div>
+                </div>
+
+                <div class="field">
+                    <label for="homeNumber">homeNumber:</label>
+                    <input type="text" th:field="*{homeNumber}"/>
+                    <div class="error-input" th:if="${#fields.hasErrors('homeNumber')}" th:errors="*{homeNumber}">Home Phone Error</div>
+                </div>
+
+                <div class="field">
+                    <label for="address">address:</label>
+                    <input type="text" th:field="*{address}"/>
+                </div>
+
+                <div class="field">
+                    <label for="email">email:</label>
+                    <input type="text" th:field="*{email}"/>
+                    <div class="error-input" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
+                </div>
+
+                <input type="submit" value="Create contact"/>
+            </form>
+
+        </div>
+    </div>
+    <!--/CONTACT ADDITION -->
+
+    </body>
+</html>
